@@ -1,0 +1,37 @@
+{% extends 'main/cosmetic.html' %}
+{% load static %}
+
+{% block title %}
+    {{ Produ.Name }}
+{% endblock %}
+
+{% block katalog %}
+
+<a href="#" id="back_id"><i class="fa-solid fa-angles-left"></i></a>
+        <div class="block_full_product_id">
+            <div class="block_product">
+                <img src="{{ Produ.image.url }}" alt="">
+                <div class="content_prod_id">
+                    <div class="title_product">{{ Produ.Name }}</div>
+                    <p class="description_big">{{ Produ.description_big }}</p>
+                    <div class="content_prod_id_price">
+                        <div class="price_product"><p>{{ Produ.price }} RUB</p></div>
+                        <form action="{% url 'cart:cart_add' Produ.id %}" method="post">
+                            <div class="number">
+                                <button type="button" class="Plus_Kol">+</button>
+                                {{ cart_product_form.quantity }}
+                                <button type="button" class="Minus_Kol">-</button>
+                            </div>
+
+                            {{ cart_product_form.update }}
+                            {% csrf_token %}
+                            <input type="submit"  class="basket" value="Заказать">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock %}

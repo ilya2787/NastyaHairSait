@@ -1,0 +1,15 @@
+{% extends "main/cosmetic.html" %}
+{% load static %}
+
+{% block title %}
+    Отправка
+{% endblock %}
+
+{% block katalog %}
+
+<script>
+    alert('Заявка успешно отправлена 🤗')
+   window.location.href = {% url 'cart:cart_detail' %}
+</script>
+
+{% endblock %}

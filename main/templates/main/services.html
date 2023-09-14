@@ -1,0 +1,45 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Услуги
+{% endblock %}
+
+{% block content %}
+    Блок навигации страницы
+    <div class="header_katalog lock_padding" id="header_katalog">
+        <h1><a href="{% url 'home' %}">N.Nastya Hair</a></h1>
+        <ul class="main_menu">
+            <li><a href="{% url 'services' %}" style="color: #faf2ea">Услуги</a></li>
+            <li><a href="{% url 'cosmetic' %}">Косметика</a></li>
+            <li><a href="">Контакты</a></li>
+        </ul>
+    </div>
+    <div class="content_product lock_padding" id="content_product_click">
+
+        <div class="header-burger">
+            <span></span>
+        </div>
+        <div class="header-menu_1 lock_padding">
+            <ul>
+                <li><a href="{% url "services" %}">Главная</a></li>
+            </ul>
+        </div>
+
+        <div class="header-menu_2 lock_padding">
+            <ul class="header-menu_2_main">
+                <li class="activ_a_menu"><a href="{% url 'services' %}">Услуги</a>
+                    <ul class="header-menu_2_cat">
+                        <li><a href="{% url "services" %}">Главная</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'cosmetic' %}">Косметика</a>
+                </li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'main/js/setting_katalog.js' %}" defer></script>
+{% endblock %}

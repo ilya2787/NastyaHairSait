@@ -1,0 +1,34 @@
+{% extends 'main/cosmetic.html' %}
+{% load static %}
+
+{% block title %}
+    Категория :: {{ current_Cat.name }}
+{% endblock %}
+
+{% block katalog %}
+
+        <div class="block_full_product">
+        <h1 class="CatName__h">{{ current_Cat.name }}</h1>
+            {% for prod in Products %}
+                <div class="block_product">
+                    <div class="title_product">{{ prod.Name }}</div>
+                    <a href="{% url 'cosmetic-cat-id' prod.id %}"><img src="{{ prod.image.url }}" alt=""></a>
+                    <p class="description_smoll">{{ prod.description_smoll }}<br><a
+                            href="{% url 'cosmetic-cat-id' prod.id %}">Подробнее..</a></p>
+                    <div class="price_product"><p>{{ prod.price }} RUB</p></div>
+                    <form action="{% url 'cart:cart_add' prod.id %}" method="post">
+                            <div class="number">
+                                <button type="button" class="Plus_Kol">+</button>
+                                {{ cart_product_form.quantity }}
+                                <button type="button" class="Minus_Kol">-</button>
+                            </div>
+
+                            {{ cart_product_form.update }}
+                            {% csrf_token %}
+                            <button type="submit" class="basket"><i class="fa-solid fa-basket-shopping"></i></button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+{% endblock %}

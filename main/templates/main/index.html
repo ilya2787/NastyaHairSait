@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Nastya Hair{% endblock %}
+
+{% block content %}
+
+    <div class="content_index" id="content_index_click">
+        <div class="content_index_information" id="Content_header">
+            <h1>N.Nastya Hair</h1>
+            <div class="main_menu_index">
+                <a href="#" id="main_menu_a">Меню</a>
+                <div class="main_menu_index_ul">
+                    <a href="{% url 'services' %}">Услуги</a>
+                    <a href="{% url 'cosmetic' %}">Косметика</a>
+                    <a href="#">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'main/js/setting_index.js' %}" defer></script>
+{% endblock %}

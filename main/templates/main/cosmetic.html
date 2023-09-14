@@ -1,0 +1,109 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}
+    Косметика
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="header_katalog lock_padding" id="header_katalog">
+        <h1><a href="{% url 'home' %}">N.Nastya Hair</a></h1>
+        <ul class="main_menu">
+            <li><a href="{% url 'services' %}">Услуги</a></li>
+            <li><a href="{% url 'cosmetic' %}" style="color: #faf2ea">Косметика</a></li>
+            <li><a href="">Контакты</a></li>
+        </ul>
+        <div class="information_product">
+            <div class="cart">
+                {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        <a href="{% url 'cart:cart_detail' %}">
+                            <p class="title_cart"><i class="fa-solid fa-basket-shopping"></i></p>
+                            <p class="int_sht">{{ total_items }}</p>
+                            <p class="int_sum_prise">{{ cart.get_total_price }} RUB</p>
+                        </a>
+                    {% else %}
+                        <p class="title_cart_cleaner"><i class="fa-solid fa-basket-shopping"></i></p>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <div class="content_product lock_padding" id="content_product_click">
+
+        <div class="title_catigoria">
+            <a href="{% url "cosmetic" %}">Главная</a>
+            {% for catig in Cat %}
+                <a href="{% url "cosmetic-cat" catig.pk %}">{{ catig.name }}</a>
+            {% endfor %}
+        </div>
+
+        <div class="header-burger">
+            <span></span>
+        </div>
+        <div class="header-menu_1 lock_padding">
+            <ul>
+                <li><a href="{% url "cosmetic" %}">Главная</a></li>
+                {% for catig in Cat %}
+                    <li><a href="{% url "cosmetic-cat" catig.pk %}">{{ catig.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="header-menu_2 lock_padding">
+            <ul class="header-menu_2_main">
+                <li><a href="{% url 'services' %}">Услуги</a></li>
+                <li class="activ_a_menu"><a href="{% url 'cosmetic' %}">Косметика</a>
+                    <ul class="header-menu_2_cat">
+                        <li><a href="{% url "cosmetic" %}">Главная</a></li>
+                        {% for catig in Cat %}
+                            <li><a href="{% url "cosmetic-cat" catig.pk %}">{{ catig.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+
+
+
+        {% block katalog %}
+            <div class="block_full_product" style="margin: 130px 0 50px 0">
+                {% for prod in Producti %}
+                    <div class="block_product">
+                        <div class="title_product">{{ prod.Name }}</div>
+                        <a href="{% url 'cosmetic-cat-id' prod.id %}"><img src="{{ prod.image.url }}" alt=""></a>
+                        <p class="description_smoll">{{ prod.description_smoll }}<br><a
+                                href="{% url 'cosmetic-cat-id' prod.id %}">Подробнее..</a></p>
+                        <div class="price_product"><p>{{ prod.price }} RUB</p></div>
+                        <form action="{% url 'cart:cart_add' prod.id %}" method="post">
+                            <div class="number">
+                                <button type="button" class="Plus_Kol" id="Plus_Kol">+</button>
+                                {{ cart_product_form.quantity }}
+                                <button type="button" class="Minus_Kol" id="Minus_Kol">-</button>
+                            </div>
+                            {{ cart_product_form.update }}
+                            {% csrf_token %}
+                            <button type="submit" class="basket"><i class="fa-solid fa-basket-shopping"></i></button>
+                        </form>
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+
+
+    </div>
+
+
+
+
+    <script>
+
+    </script>
+
+    <script type="text/javascript" src="{% static 'main/js/setting_katalog.js' %}" defer></script>
+
+{% endblock %}

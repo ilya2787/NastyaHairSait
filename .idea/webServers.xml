@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="26e440fc-d4a3-44ab-b121-97104eaddadd" name="NastyaHair">
+        <fileTransfer rootFolder="/home/users/j/j5842273" accessType="SFTP" host="nastyahair.ru" port="22" sshConfigId="5cef4a2f-171a-4007-8227-650d6be43c2a" sshConfig="j5842273@nastyahair.ru:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
